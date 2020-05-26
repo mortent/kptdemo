@@ -1,0 +1,23 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: .
+packageMetadata:
+  shortDescription: sample description
+openAPI:
+  definitions:
+    io.k8s.cli.setters.namespace:
+      x-k8s-cli:
+        setter:
+          name: namespace
+          value: default
+    io.k8s.cli.setters.dep-replicas:
+      x-k8s-cli:
+        setter:
+          name: dep-replicas
+          value: "4"
+    io.k8s.cli.setters.sts-replicas:
+      x-k8s-cli:
+        setter:
+          name: sts-replicas
+          value: "2"

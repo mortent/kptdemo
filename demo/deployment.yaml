@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default # {"$ref":"#/definitions/io.k8s.cli.setters.namespace"}
+  labels:
+    app: nginx-deployment
+    foo: bar
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  replicas: 4 # {"$ref":"#/definitions/io.k8s.cli.setters.dep-replicas"}
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+        pdb: mypdb
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.10
+        ports:
+        - containerPort: 80
